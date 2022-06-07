@@ -24,15 +24,15 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className="App-header">
       <h1> Vigil Code Test</h1>
       <form onSubmit={handleId}><input placeholder='Enter id#' type="text" id="fname" name="fname" ></input></form>
       {data.map((data) => {
         return (
-          <div className="post-card" key={data}>
+          <div  key={data}>
 
-            <h2 className="post-title">{data.identifier}</h2>
-            <p className="post-body">{data._id}</p>
+            <h2 >{data.identifier}</h2>
+            <p >{data._id}</p>
 
           </div>
         );
