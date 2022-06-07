@@ -4,39 +4,38 @@ import "./App.css"
 
 // Axios is a promise-based HTTP Client that uses XMLHttpRequests and automatically handles JSON
 const client = axios.create({
-  baseURL: "https://dynggo.herokuapp.com/"
+  baseURL: "https://gdev.vigil.com/vigil_test",
+  headers: {'Access-Control-Allow-Origin': null}
 });
+
 
 const App = () => {
 
   const [data, setData] = useState([]);
-  const [id, setId] = useState('');
+  
+  const [token, setToken] = useState('')
 
   useEffect(() => {
-    client.get(`reports?identifier=${id}`).then((response) => {
-      setData(response.data);
+    client.get(`?username=les&token=vigiltoken`).then((response) => {
+      
+      setToken(response.data.token.toUpperCase());
     });
-  }, [id]);
+  }, []);
 
-  const handleId = (e) => {
-    e.preventDefault();
-    setId(e.target[0].value)
-  }
+  
 
   return (
     <div className="App-header">
       <h1> Vigil Code Test</h1>
-      <form onSubmit={handleId}><input placeholder='Enter id#' type="text" id="fname" name="fname" ></input></form>
-      {data.map((data) => {
-        return (
-          <div  key={data}>
+     
+          <div>
 
-            <h2 >{data.identifier}</h2>
-            <p >{data._id}</p>
-
+            <p >{token}</p>
+ 
           </div>
-        );
-      })}
+       
+    
+      
     </div>
   )
 }
