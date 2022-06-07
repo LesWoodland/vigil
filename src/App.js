@@ -35,14 +35,19 @@ const App = () => {
       .then((response) => {
         setToken(response.data.magic_token.toUpperCase());
       });
-    updateToken();
+    updateToken(token);
   }, []);
 
   const updateToken = (token) => {
     client
-      .post('https://gdev.vigil.com/vigil_test', { username: 'les', token:'vigiltoken',result: token })
+      .post('https://gdev.vigil.com/vigil_test',
+        {
+          username: 'les',
+          token: 'vigiltoken',
+          result: token
+        })
       .then((response) => {
-        setMagicToken([response.data.token]);
+        console.log(response.data)
       });
 
   };
